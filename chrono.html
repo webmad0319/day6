@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <style>
+        .clock {
+            font-family: 'Bangers', cursive;
+            font-size: 24px;
+        }
+
+        .clock.special {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <span class="hours"></span>
+        <span class="minutes"></span>
+        <span class="seconds"></span>
+    </div>
+    <div class="clock special">
+        <span class="hours"></span>
+        <span class="minutes"></span>
+        <span class="seconds"></span>
+    </div>
+    <div class="clock">
+        <span class="hours"></span>
+        <span class="minutes"></span>
+        <span class="seconds"></span>
+    </div>
+    <button id="start">Start chrono!</button>
+    <script>
+        let seconds = 0
+        let minutes = 0
+
+        document.querySelector("#start").onclick = function () {
+            setInterval(function () {
+                seconds++;
+
+                if (seconds === 12) {
+                    minutes++;
+
+                    seconds = 0
+                }
+
+                function timerGeneralization(className, timer) {
+                    if (timer < 10) {
+                        document.querySelectorAll(className).forEach(function (clock) {
+                            clock.innerHTML = `0${timer}`;
+                        })
+                    } else {
+                        document.querySelectorAll(className).forEach(function (clock) {
+                            clock.innerHTML = `${timer}`;
+                        })
+                    }
+                }
+
+                timerGeneralization(".seconds", seconds)
+                timerGeneralization(".minutes", minutes)
+
+                //this is superseed by the timerGeneralization function!
+
+                // if (minutes < 10) {
+                //     document.querySelectorAll(".minutes").forEach(function (clock) {
+                //         clock.innerHTML = `0${minutes}`;
+                //     })
+                // } else {
+                //     document.querySelectorAll(".minutes").forEach(function (clock) {
+                //         clock.innerHTML = `${minutes}`;
+                //     })
+                // }
+
+
+
+
+            }, 300)
+        }
+    </script>
+</body>
+
+</html>

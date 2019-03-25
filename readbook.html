@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="loadBook">Load book!</button>
+
+    <script>
+        document.querySelector("#loadBook").onclick = function (e) {
+            e.preventDefault();
+
+            //mostrar un preloader
+            fetch("./test.json")
+                .then(function (data) {
+                    //ocultar preloader
+                    return data.json()
+                })
+                .then(function (json){
+                    console.log(json.data)
+                })
+            //other js
+        }
+
+        //other js
+    </script>
+
+
+</body>
+
+</html>

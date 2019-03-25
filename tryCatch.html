@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #errorModal {
+            border: 1px solid black;
+            padding: 20px;
+            display: none;
+            position: relative;
+            z-index: 1000;
+            background: white;
+        }
+
+        #errorModal .header {
+            font-size: 24px;
+            font-weight: bold;
+            /* border-bottom: 1px solid grey; */
+            margin-bottom: 20px;
+        }
+
+        #overlay {
+            height: 100vh;
+            width: 100vw;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #output {
+            font-size: 128px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="overlay">
+        <div id="errorModal">
+            <div class="header"></div>
+            <div class="contents"></div>
+            <button>Close</button>
+        </div>
+    </div>
+    <div id="output"></div>
+    <script>
+        function sum(s1, s2) {
+            if (typeof s1 !== "number" || typeof s2 !== "number") {
+                throw new TypeError("You are not passing numbers to this function")
+            }
+
+            if (s1 < 0 || s2 > 1000) {
+                throw new RangeError("You are not providing a correct range")
+            }
+
+            return s1 + s2
+        }
+
+        try {
+            document.querySelector("#output").innerHTML = sum(-100, 100)
+        }
+        catch (error) {
+            document.querySelector("#overlay").style.display = "flex"
+            document.querySelector("#errorModal").style.display = "block"
+
+            if (error instanceof TypeError) {
+                document.querySelector("#errorModal .header").innerHTML = "Wrong type!"
+                document.querySelector("#errorModal .contents").innerHTML = "Has cometido un error!"
+            }
+
+            if (error instanceof RangeError) {
+                document.querySelector("#errorModal .header").innerHTML = "Wrong range!"
+                document.querySelector("#errorModal .contents").innerHTML = "Has cometido un error!"
+            }
+
+        }
+    </script>
+</body>
+
+</html>

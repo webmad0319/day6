@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #block {
+            height: 100px;
+            width: 100px;
+            background: red;
+            position: absolute;
+            top: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="test">Animate box!</button>
+    <button id="reset">Reset animation</button>
+
+    <div id="block"></div>
+
+    <script>
+        // for (var left = 0; left < 300; left++) {
+        //     document.querySelector("#block").style.left = `${left}px`
+        // }
+
+        var i = 0
+        var intervalID
+        var left = 0
+
+        document.querySelector("#reset").onclick = function () {
+            left = 0
+        }
+
+        document.querySelector("#test").onclick = function () {
+            if (i % 2) {
+                clearInterval(intervalID)
+            } else {
+                intervalID = setInterval(function () {
+                    document.querySelector("#block").style.left = `${left += 1}px`
+                }, 10)
+            }
+
+            i++
+        }
+    </script>
+
+
+</body>
+
+</html>
